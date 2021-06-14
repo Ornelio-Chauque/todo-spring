@@ -1,0 +1,56 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello world</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+</head>
+<body>
+<div th:insert="~{header :: header}"/>
+
+<div class="container">
+    <br><br>
+    <h2 alt="Hello world" th:text="${task.name}">...</h2>
+    <p th:text="${task.description}">Task description</p>
+    <a class="btn btn-primary" th:href="@{/task/}">Tasks List</a>
+
+    <!-- List of tasks-->
+    <div>
+        <h3> Tasks details</h3>
+
+        <table class="table ">
+            <thead>
+            <th> Title </th>
+            <th>Description</th>
+            <th>Action</th>
+            </thead>
+
+            <tr>
+                <td th:text="${task.name} "></td>
+                <td th:text="${task.description}"></td>
+                <td>
+                    <a th:href="@{'/task/'+${task.id}+'/showDelete'}" class="btn btn-danger">Delete</a>
+                    <a th:href="@{'/task/'+*{id}+'/editForm'}" class="btn btn-success">Edit</a>
+                </td>
+            </tr>
+        </table>
+
+        <!-- <li th:each="task : ${tasks}">
+
+             <ul th:text="${task.name}"></ul>
+             <ul th:text="${task.description}"></ul>
+         </li>
+       -->
+
+    </div>
+</div>
+
+<br><br>
+
+<div th:insert="footer :: footer"/>
+
+</body>
+
+</html>

@@ -1,10 +1,53 @@
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Hello world</title>
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
     </head>
     <body>
-        <h alt="Hello world">Hello world</h>
+    <div th:insert="~{header :: header}"/>
+
+    <div class="container">
+        <br><br>
+        <h2 alt="Hello world">TaskTrack</h2>
+        <p>Your task organizer and track</p>
+
+        <!-- List of tasks-->
+        <div>
+            <h3> List of task</h3>
+
+            <table class="table ">
+                <thead>
+                    <td>Title</td>
+                    <td>Description</td>
+                    <td>Action</td>
+                </thead>
+
+                <tr th:each=" task: ${tasks}">
+                    <td th:text="${task.name}"></td>
+                    <td th:text="${task.description}"></td>
+                    <td> <a th:href="@{/task/{id}/(id=${task.id})}" class="btn btn-danger">Details</a></td>
+                </tr>
+
+            </table>
+
+           <!-- <li th:each="task : ${tasks}">
+                <ul th:text="${task.name}"></ul>
+                <ul th:text="${task.description}"></ul>
+            </li>
+          -->
+            <a href="/task/add-task" class="btn btn-primary"> add Task </a>
+
+        </div>
+    </div>
+
+    <br><br>
+
+    <div th:insert="footer :: footer"/>
+
     </body>
 
 </html>
